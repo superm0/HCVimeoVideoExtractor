@@ -7,14 +7,15 @@
 
 import UIKit
 
-enum HCVimeoVideoQuality {
-    case low
-    case medium
-    case high
-    case best
+enum HCVimeoVideoQuality: String {
+    case low = "360p"
+    case medium = "540p"
+    case high = "720p"
+    case best = "1080p"
 }
 
-class HCVimeoVideo: NSObject {
+public class HCVimeoVideo: NSObject {
+    
     var title = ""
     var videoURL:URL?
     var thumbnailURL:URL?

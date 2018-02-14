@@ -9,6 +9,7 @@
 import UIKit
 import HCVimeoVideoExtractor
 
+
 class ViewController: UIViewController {
 
     @IBOutlet weak var txtVimeoURL: UITextField!
@@ -16,6 +17,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.txtVimeoURL.text = "https://vimeo.com/237055470"
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,10 +29,9 @@ class ViewController: UIViewController {
         
         if let url = URL(string: self.txtVimeoURL.text!) {
             
-            HCVimeoVideoExtractor.fetchVideoURLFrom(url: url) { ( videos:[HCVimeoVideo]?, error:Error?) -> Void in
+            HCVimeoVideoExtractor.fetchVideoURLFrom(url: url, completion: { ( videos:[HCVimeoVideo]?, error:Error?) -> Void in
                 
-                
-            }
+            })
         }
     }
     

@@ -1,5 +1,5 @@
 PODS:
-  - HCVimeoVideoExtractor (0.1.0)
+  - HCVimeoVideoExtractor (0.0.1)
 
 DEPENDENCIES:
   - HCVimeoVideoExtractor (from `../`)
@@ -9,8 +9,8 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  HCVimeoVideoExtractor: c6adb33a3aeabb859387e38ea6fd6a4d807eedf3
+  HCVimeoVideoExtractor: fc132786534872921745c4a19093bf722c22803c
 
-PODFILE CHECKSUM: 242f41f374a9d9b8c3027e150e4c1cd46194f3f3
+PODFILE CHECKSUM: 1f197f25350e55a60f403728be87347c3f349630
 
 COCOAPODS: 1.4.0

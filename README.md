@@ -1,9 +1,6 @@
 # HCVimeoVideoExtractor
 
-[![CI Status](http://img.shields.io/travis/Mo Cariaga/HCVimeoVideoExtractor.svg?style=flat)](https://travis-ci.org/Mo Cariaga/HCVimeoVideoExtractor)
-[![Version](https://img.shields.io/cocoapods/v/HCVimeoVideoExtractor.svg?style=flat)](http://cocoapods.org/pods/HCVimeoVideoExtractor)
-[![License](https://img.shields.io/cocoapods/l/HCVimeoVideoExtractor.svg?style=flat)](http://cocoapods.org/pods/HCVimeoVideoExtractor)
-[![Platform](https://img.shields.io/cocoapods/p/HCVimeoVideoExtractor.svg?style=flat)](http://cocoapods.org/pods/HCVimeoVideoExtractor)
+HCVimeoVideoExtractor is an easy way to extract the Vimeo video details like title, thumbnails and mp4 URL's which then can be used to play using AVPlayerView.
 
 ## Example
 
