@@ -1,0 +1,22 @@
+{
+  "name": "HCVimeoVideoExtractor",
+  "version": "0.1.0",
+  "summary": "A short description of HCVimeoVideoExtractor.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/Mo Cariaga/HCVimeoVideoExtractor",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Mo Cariaga": "hermo.cariaga@igentechnologies.com"
+  },
+  "source": {
+    "git": "https://github.com/Mo Cariaga/HCVimeoVideoExtractor.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "HCVimeoVideoExtractor/Classes/**/*"
+}

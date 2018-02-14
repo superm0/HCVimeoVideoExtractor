@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'HCVimeoVideoExtractor'
-  s.version          = '0.1.0'
-  s.summary          = 'A short description of HCVimeoVideoExtractor.'
+  s.version          = '0.0.1'
+  s.summary          = 'HCVimeoVideoExtractor is an easy way to extract the Vimeo video details.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,17 +18,17 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+HCVimeoVideoExtractor is an easy way to extract the Vimeo video details like title, thumbnails and mp4 URL's which then can be used to play using AVPlayerView.
                        DESC
 
-  s.homepage         = 'https://github.com/Mo Cariaga/HCVimeoVideoExtractor'
+  s.homepage         = 'https://github.com/superm0/HCVimeoVideoExtractor'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'Mo Cariaga' => 'hermo.cariaga@igentechnologies.com' }
-  s.source           = { :git => 'https://github.com/Mo Cariaga/HCVimeoVideoExtractor.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.author           = { 'Mo Cariaga' => 'hermoso.cariaga@gmail.com' }
+  s.source           = { :git => 'https://github.com/superm0/HCVimeoVideoExtractor.git', :tag => s.version.to_s }
+   s.social_media_url = 'https://twitter.com/sup3rm0'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
 
   s.source_files = 'HCVimeoVideoExtractor/Classes/**/*'
   
