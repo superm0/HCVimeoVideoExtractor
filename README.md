@@ -28,6 +28,10 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 ## Usage
 Use the block based methods in `HCVimeoVideoExtractor` class to retrieve the Vimeo video details. Both methods will call a completion handler with two parameters. The first parameter is a `HCVimeoVideo` object which represents a Vimeo video. The second parameter is an `Error` object describing the network connection or internal processing error. 
 
+```
+import HCVimeoVideoExtractor
+```
+
 Retrieve the Vimeo video details using URL
 
 ```
