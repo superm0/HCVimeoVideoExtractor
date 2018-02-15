@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nd6-ua-aUQ">
-                                <rect key="frame" x="30" y="126" width="315" height="30"/>
+                                <rect key="frame" x="30" y="84" width="315" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="X3A-Mn-4py"/>
                                 </constraints>
@@ -31,13 +31,35 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3MD-UD-Vow">
-                                <rect key="frame" x="30" y="170" width="315" height="43"/>
+                                <rect key="frame" x="30" y="128" width="315" height="43"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="leX-1U-wTQ"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Get URL"/>
                                 <connections>
                                     <action selector="getVideoURL:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="18c-DN-qwk"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jWl-4j-o73">
+                                <rect key="frame" x="30" y="234" width="315" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="WYK-9t-Q4i"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="T3s-my-76l">
+                                <rect key="frame" x="30" y="263" width="315" height="189"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="189" id="ufj-4i-ksP"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="noW-Jc-xXX">
+                                <rect key="frame" x="30" y="460" width="315" height="30"/>
+                                <state key="normal" title="Play"/>
+                                <connections>
+                                    <action selector="play:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ehd-TH-QDn"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -45,13 +67,24 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="nd6-ua-aUQ" secondAttribute="trailing" constant="30" id="0Wb-Pt-wan"/>
                             <constraint firstItem="3MD-UD-Vow" firstAttribute="top" secondItem="nd6-ua-aUQ" secondAttribute="bottom" constant="14" id="1Et-d6-ayt"/>
+                            <constraint firstItem="jWl-4j-o73" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="30" id="1wn-n6-EWg"/>
+                            <constraint firstAttribute="trailing" secondItem="jWl-4j-o73" secondAttribute="trailing" constant="30" id="683-Ow-6Yr"/>
                             <constraint firstItem="3MD-UD-Vow" firstAttribute="centerX" secondItem="nd6-ua-aUQ" secondAttribute="centerX" id="8tn-kA-7km"/>
+                            <constraint firstAttribute="trailing" secondItem="noW-Jc-xXX" secondAttribute="trailing" constant="30" id="DFv-A1-PZG"/>
+                            <constraint firstItem="T3s-my-76l" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="30" id="OwK-IT-YhU"/>
+                            <constraint firstItem="noW-Jc-xXX" firstAttribute="top" secondItem="T3s-my-76l" secondAttribute="bottom" constant="8" id="XmD-3t-hVG"/>
+                            <constraint firstItem="T3s-my-76l" firstAttribute="top" secondItem="jWl-4j-o73" secondAttribute="bottom" constant="8" id="Zj7-hc-1Ix"/>
+                            <constraint firstItem="jWl-4j-o73" firstAttribute="top" secondItem="3MD-UD-Vow" secondAttribute="bottom" constant="63" id="b8C-fF-ja9"/>
+                            <constraint firstAttribute="trailing" secondItem="T3s-my-76l" secondAttribute="trailing" constant="30" id="gzd-SI-Agg"/>
                             <constraint firstItem="3MD-UD-Vow" firstAttribute="width" secondItem="nd6-ua-aUQ" secondAttribute="width" id="nhm-ri-HkD"/>
                             <constraint firstItem="nd6-ua-aUQ" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="30" id="r6T-ef-Lg6"/>
-                            <constraint firstItem="nd6-ua-aUQ" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="106" id="xIF-3Y-i04"/>
+                            <constraint firstItem="noW-Jc-xXX" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="30" id="skq-hz-Yuk"/>
+                            <constraint firstItem="nd6-ua-aUQ" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="64" id="xIF-3Y-i04"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="imageView" destination="T3s-my-76l" id="0XY-S7-fPR"/>
+                        <outlet property="lblTitle" destination="jWl-4j-o73" id="D8i-5h-ppz"/>
                         <outlet property="txtVimeoURL" destination="nd6-ua-aUQ" id="GHu-3G-q1V"/>
                     </connections>
                 </viewController>
