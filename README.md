@@ -28,13 +28,13 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 ## Usage
 Use the block based methods in `HCVimeoVideoExtractor` class to retrieve the Vimeo video details. Both methods will call a completion handler with two parameters. The first parameter is a `HCVimeoVideo` object which represents a Vimeo video. The second parameter is an `Error` object describing the network connection or internal processing error. 
 
-```
+```swift
 import HCVimeoVideoExtractor
 ```
 
 Retrieve the Vimeo video details using URL
 
-```
+```swift
 let url = URL(string: "https://vimeo.com/[video_id]")!
 HCVimeoVideoExtractor.fetchVideoURLFrom(url: url, completion: { ( video:HCVimeoVideo?, error:Error?) -> Void in                
     if let err = error {                    
@@ -60,7 +60,7 @@ HCVimeoVideoExtractor.fetchVideoURLFrom(url: url, completion: { ( video:HCVimeoV
 })
 ```
 Retrieve the Vimeo video details using video ID
-```
+```swift
 HCVimeoVideoExtractor.fetchVideoURLFrom(id: "video_id", completion: { ( video:HCVimeoVideo?, error:Error?) -> Void in
     if let err = error {
         print("Error = \(err.localizedDescription)")
