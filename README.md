@@ -6,6 +6,8 @@ HCVimeoVideoExtractor is an easy to use Swift library for retrieving the Vimeo v
 
 
 ## Requirements
+HCVimeoVideoExtractor requires iOS 9.0 and Swift 3.2 and above
+
 
 
 ## Installation
