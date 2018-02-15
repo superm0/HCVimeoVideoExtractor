@@ -83,7 +83,7 @@ HCVimeoVideoExtractor.fetchVideoURLFrom(id: "video_id", completion: { ( video:HC
 
 ## Author
 
-Mo Cariaga, hermo.cariaga@igentechnologies.com
+Mo Cariaga, hermoso.cariaga@gmail.com
 
 ## License
 
