@@ -44,12 +44,11 @@ class ViewController: UIViewController {
                         self.lblTitle.text = "-"
                         self.imageView.image = nil
                         self.videoURL = nil
+                        
+                        let alert = UIAlertController(title: "Error", message: err.localizedDescription, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
                     }
-
-                    let alert = UIAlertController(title: "Error", message: err.localizedDescription, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
-                    
                     return
                 }
                 
@@ -60,6 +59,15 @@ class ViewController: UIViewController {
                 
                 print("Title = \(vid.title), url = \(vid.videoURL), thumbnail = \(vid.thumbnailURL)")
             
+                
+                /*
+                    let player = AVPlayer(url: vid.videoURL[.Quality540p]!)
+                    let playerController = AVPlayerViewController()
+                    playerController.player = player
+                    self.present(playerController, animated: true) {
+                        player.play()
+                */
+                        
                 DispatchQueue.main.async() {
                     self.videoURL = vid.videoURL[.Quality540p]
                     self.lblTitle.text = vid.title
