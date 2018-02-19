@@ -27,10 +27,10 @@
 import UIKit
 
 public class HCVimeoVideoExtractor: NSObject {
-    private let domain = "ph.hercsoft.HCVimeoVideoExtractor"
-    private let configURL = "https://player.vimeo.com/video/{id}/config"
-    private var completion: ((_ video: HCVimeoVideo?, _ error:Error?) -> Void)?
-    private var videoId: String = ""
+    fileprivate let domain = "ph.hercsoft.HCVimeoVideoExtractor"
+    fileprivate let configURL = "https://player.vimeo.com/video/{id}/config"
+    fileprivate var completion: ((_ video: HCVimeoVideo?, _ error:Error?) -> Void)?
+    fileprivate var videoId: String = ""
     
     
     public static func fetchVideoURLFrom(url: URL, completion: @escaping (_ video: HCVimeoVideo?, _ error:Error?) -> Void) -> Void {
