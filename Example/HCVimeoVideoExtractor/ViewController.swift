@@ -69,10 +69,10 @@ class ViewController: UIViewController {
                 */
                         
                 DispatchQueue.main.async() {
-                    self.videoURL = vid.videoURL[.Quality540p]
+                    self.videoURL = vid.videoURL[.quality540p]
                     self.lblTitle.text = vid.title
                     
-                    if let url = vid.thumbnailURL[.QualityBase] {
+                    if let url = vid.thumbnailURL[.qualityBase] {
                         self.imageView.contentMode = .scaleAspectFit
                         self.downloadImage(url: url)
                     }
