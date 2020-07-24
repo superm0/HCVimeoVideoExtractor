@@ -27,7 +27,7 @@
 import UIKit
 
 public class HCVimeoVideoExtractor: NSObject {
-    fileprivate let domain = "ph.hercsoft.HCVimeoVideoExtractor"
+    fileprivate static let domain = "ph.hercsoft.HCVimeoVideoExtractor"
     fileprivate let configURL = "https://player.vimeo.com/video/{id}/config"
     fileprivate var completion: ((_ video: HCVimeoVideo?, _ error:Error?) -> Void)?
     fileprivate var videoId: String = ""
@@ -41,7 +41,7 @@ public class HCVimeoVideoExtractor: NSObject {
             videoExtractor.start()
         }
         else {
-            completion(nil, NSError(domain: "ph.hercsoft.HCVimeoVideoExtractor", code:0, userInfo:[NSLocalizedDescriptionKey :  "Invalid video id" , NSLocalizedFailureReasonErrorKey : "Failed to parse the video id"]))
+            completion(nil, NSError(domain: HCVimeoVideoExtractor.domain, code:0, userInfo:[NSLocalizedDescriptionKey :  "Invalid video id" , NSLocalizedFailureReasonErrorKey : "Failed to parse the video id"]))
         }
     }
     
@@ -52,29 +52,29 @@ public class HCVimeoVideoExtractor: NSObject {
             videoExtractor.start()
         }
         else {
-            completion(nil, NSError(domain: "ph.hercsoft.HCVimeoVideoExtractor", code:0, userInfo:[NSLocalizedDescriptionKey :  "Invalid video id" , NSLocalizedFailureReasonErrorKey : "Invalid video id"]))
+            completion(nil, NSError(domain: HCVimeoVideoExtractor.domain, code:0, userInfo:[NSLocalizedDescriptionKey :  "Invalid video id" , NSLocalizedFailureReasonErrorKey : "Invalid video id"]))
         }
     }
     
     private init(id: String) {
-        self.videoId = id
-        self.completion = nil
+        videoId = id
+        completion = nil
         super.init()
     }
     
     private func start() -> Void {
         
-        guard let completion = self.completion else {
+        guard let completion = completion else {
             print("ERROR: Invalid completion handler")
             return
         }
         
-        if self.videoId == "" {
-            completion(nil, NSError(domain: self.domain, code:0, userInfo:[NSLocalizedDescriptionKey :  "Invalid video id" , NSLocalizedFailureReasonErrorKey : "Invalid video id"]))
+        if videoId == "" {
+            completion(nil, NSError(domain: HCVimeoVideoExtractor.domain, code:0, userInfo:[NSLocalizedDescriptionKey :  "Invalid video id" , NSLocalizedFailureReasonErrorKey : "Invalid video id"]))
             return
         }
         
-        let dataURL = self.configURL.replacingOccurrences(of: "{id}", with: self.videoId)
+        let dataURL = configURL.replacingOccurrences(of: "{id}", with: videoId)
         if let url = URL(string: dataURL) {
             let urlRequest = URLRequest(url: url)
             let session = URLSession.shared
@@ -87,13 +87,13 @@ public class HCVimeoVideoExtractor: NSObject {
                 }
                 
                 guard let responseData = data else {
-                    completion(nil, NSError(domain: self.domain, code:2, userInfo:[NSLocalizedDescriptionKey :  "Invalid response" , NSLocalizedFailureReasonErrorKey : "Invalid response from Vimeo"]))
+                    completion(nil, NSError(domain: HCVimeoVideoExtractor.domain, code:2, userInfo:[NSLocalizedDescriptionKey :  "Invalid response" , NSLocalizedFailureReasonErrorKey : "Invalid response from Vimeo"]))
                     return
                 }
                 
                 do {
                     guard let data = try JSONSerialization.jsonObject(with: responseData, options: []) as? [String: AnyObject] else {
-                        completion(nil, NSError(domain: self.domain, code:3, userInfo:[NSLocalizedDescriptionKey :  "Invalid response" , NSLocalizedFailureReasonErrorKey : "Failed to parse Vimeo response"]))
+                        completion(nil, NSError(domain: HCVimeoVideoExtractor.domain, code:3, userInfo:[NSLocalizedDescriptionKey :  "Invalid response" , NSLocalizedFailureReasonErrorKey : "Failed to parse Vimeo response"]))
                         return
                     }
                     
@@ -124,60 +124,29 @@ public class HCVimeoVideoExtractor: NSObject {
                             completion(video, nil)
                         }
                         else {
-                            completion(nil, NSError(domain: self.domain, code:5, userInfo:[NSLocalizedDescriptionKey :  "Failed to retrive mp4 video url" , NSLocalizedFailureReasonErrorKey : "Failed to retrive mp4 video url"]))
+                            completion(nil, NSError(domain: HCVimeoVideoExtractor.domain, code:5, userInfo:[NSLocalizedDescriptionKey :  "Failed to retrive mp4 video url" , NSLocalizedFailureReasonErrorKey : "Failed to retrive mp4 video url"]))
                         }
                     }
                     else {
-                        completion(nil, NSError(domain: self.domain, code:4, userInfo:[NSLocalizedDescriptionKey :  "Failed to retrive mp4 video url" , NSLocalizedFailureReasonErrorKey : "Failed to retrive mp4 video url"]))
+                        completion(nil, NSError(domain: HCVimeoVideoExtractor.domain, code:4, userInfo:[NSLocalizedDescriptionKey :  "Failed to retrive mp4 video url" , NSLocalizedFailureReasonErrorKey : "Failed to retrive mp4 video url"]))
                     }
                 } catch  {
-                    completion(nil, NSError(domain: self.domain, code:3, userInfo:[NSLocalizedDescriptionKey :  "Failed to parse Vimeo response" , NSLocalizedFailureReasonErrorKey : "Failed to parse Vimeo response"]))
+                    completion(nil, NSError(domain: HCVimeoVideoExtractor.domain, code:3, userInfo:[NSLocalizedDescriptionKey :  "Failed to parse Vimeo response" , NSLocalizedFailureReasonErrorKey : "Failed to parse Vimeo response"]))
                     return
                 }
             })
             task.resume()
         }
         else {
-            completion(nil, NSError(domain: self.domain, code:1, userInfo:[NSLocalizedDescriptionKey :  "Failed to retrieve video URL" , NSLocalizedFailureReasonErrorKey : "Failed to retrieve video URL"]))
+            completion(nil, NSError(domain: HCVimeoVideoExtractor.domain, code:1, userInfo:[NSLocalizedDescriptionKey :  "Failed to retrieve video URL" , NSLocalizedFailureReasonErrorKey : "Failed to retrieve video URL"]))
         }
     }
  
     private func videoQualityWith(string: String) -> HCVimeoVideoQuality {
-        if string == "360p" {
-            return .Quality360p
-        }
-        else if string == "540p" {
-            return .Quality540p
-        }
-        else if string == "640p" {
-            return .Quality640p
-        }
-        else if string == "720p" {
-            return .Quality720p
-        }
-        else if string == "960p" {
-            return .Quality960p
-        }
-        else if string == "1080p" {
-            return .Quality1080p
-        }
-        
-        return .QualityUnknown
+        return HCVimeoVideoQuality(rawValue: string) ?? .QualityUnknown
     }
     
     private func thumbnailQualityWith(string: String) -> HCVimeoThumbnailQuality {
-        if string == "640" {
-            return .Quality640
-        }
-        else if string == "960" {
-            return .Quality960
-        }
-        else if string == "1280" {
-            return .Quality1280
-        }
-        else if string == "base" {
-            return .QualityBase
-        }        
-        return .QualityUnknown
+        return HCVimeoThumbnailQuality(rawValue: string) ?? .QualityUnknown
     }
 }
