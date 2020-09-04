@@ -27,21 +27,21 @@
 import UIKit
 
 public enum HCVimeoThumbnailQuality: String {
-    case Quality640 = "640"
-    case Quality960 = "960"
-    case Quality1280 = "1280"
-    case QualityBase = "base"
-    case QualityUnknown = "unknown"
+    case quality640 = "640"
+    case quality960 = "960"
+    case quality1280 = "1280"
+    case qualityBase = "base"
+    case qualityUnknown = "unknown"
 }
 
 public enum HCVimeoVideoQuality: String {
-    case Quality360p = "360p"
-    case Quality540p = "540p"
-    case Quality640p = "640p"
-    case Quality720p = "720p"
-    case Quality960p = "960p"
-    case Quality1080p = "1080p"
-    case QualityUnknown = "unknown"
+    case quality360p = "360p"
+    case quality540p = "540p"
+    case quality640p = "640p"
+    case quality720p = "720p"
+    case quality960p = "960p"
+    case quality1080p = "1080p"
+    case qualityUnknown = "unknown"
 }
 
 public class HCVimeoVideo: NSObject {
