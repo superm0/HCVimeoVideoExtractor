@@ -23,7 +23,7 @@
  // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  // THE SOFTWARE.
 
- 
+#if canImport(UIKit)
 import UIKit
 
 public enum HCVimeoThumbnailQuality: String {
@@ -49,3 +49,4 @@ public class HCVimeoVideo: NSObject {
     public var thumbnailURL = [HCVimeoThumbnailQuality: URL]()
     public var videoURL = [HCVimeoVideoQuality: URL]()
 }
+#endif
