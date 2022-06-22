@@ -30,7 +30,7 @@ HCVimeoVideoExtractor is an easy way to extract the Vimeo video details like tit
 
   s.ios.deployment_target = '9.0'
 
-  s.source_files = 'HCVimeoVideoExtractor/Classes/**/*'
+  s.source_files = 'Sources/HCVimeoVideoExtractor/**/*'
   
   # s.resource_bundles = {
   #   'HCVimeoVideoExtractor' => ['HCVimeoVideoExtractor/Assets/*.png']
