@@ -97,6 +97,14 @@ public class HCVimeoVideoExtractor: NSObject {
                         return
                     }
                     
+                    if let hls = (data as NSDictionary).value(forKeyPath: "request.files.hls.cdns") as? [String: AnyObject],
+                       let url = hls.first?.value["url"] as? String {
+                        let video = HCVimeoVideo()
+                        video.videoURL[.quality1080p] = URL(string: url)
+                        completion(video, nil)
+                        return
+                    }
+                    
                     if let files = (data as NSDictionary).value(forKeyPath: "request.files.progressive") as? Array<Dictionary<String,Any>> {
                         
                         let video = HCVimeoVideo()

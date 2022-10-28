@@ -34,7 +34,8 @@ class ViewController: UIViewController {
     @IBAction func getVideoURL(_ sender: Any) {
         
         if let url = URL(string: self.txtVimeoURL.text!) {
-            HCVimeoVideoExtractor.fetchVideoURLFrom(url: url, completion: { ( video:HCVimeoVideo?, error:Error?) -> Void in
+            HCVimeoVideoExtractor.fetchVideoURLFrom(id: "761683080", completion: { ( video:HCVimeoVideo?, error:Error?) -> Void in
+//            HCVimeoVideoExtractor.fetchVideoURLFrom(url: url, completion: { ( video:HCVimeoVideo?, error:Error?) -> Void in
             
                 if let err = error {
                     

@@ -37,7 +37,7 @@
 		0E45FCF8EAB00E2E4E688926D2C35563 /* HCVimeoVideoExtractor-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "HCVimeoVideoExtractor-dummy.m"; sourceTree = "<group>"; };
 		2856C7BA13B0CCDA996D5F87DA0F7898 /* Pods-HCVimeoVideoExtractor_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-HCVimeoVideoExtractor_Tests.modulemap"; sourceTree = "<group>"; };
 		33BFA1AD63D1F064FC916EB91931C197 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		3A4D42FF4F17B80BB370E508654F1B2E /* HCVimeoVideo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HCVimeoVideo.swift; path = HCVimeoVideoExtractor/Classes/HCVimeoVideo.swift; sourceTree = "<group>"; };
+		3A4D42FF4F17B80BB370E508654F1B2E /* HCVimeoVideo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HCVimeoVideo.swift; path = Sources/HCVimeoVideoExtractor/HCVimeoVideo.swift; sourceTree = "<group>"; };
 		3EFBDFC48CC11D3FC60C863CB5B5214C /* Pods_HCVimeoVideoExtractor_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HCVimeoVideoExtractor_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CAE9C6E78D15A7BF4CA6A06960153B9 /* Pods-HCVimeoVideoExtractor_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-HCVimeoVideoExtractor_Example-resources.sh"; sourceTree = "<group>"; };
 		4DD29ADAF2DF5B2E6271F253F6C1A515 /* Pods-HCVimeoVideoExtractor_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-HCVimeoVideoExtractor_Example.modulemap"; sourceTree = "<group>"; };
@@ -49,7 +49,7 @@
 		6B5DA1B8574F143D6E33C9B0F469038A /* HCVimeoVideoExtractor.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = HCVimeoVideoExtractor.xcconfig; sourceTree = "<group>"; };
 		6BE79F7571B75495D469368976249289 /* HCVimeoVideoExtractor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HCVimeoVideoExtractor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7252B55550A0FD23EAF652BF2B042B9E /* Pods-HCVimeoVideoExtractor_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-HCVimeoVideoExtractor_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		78D3BB5D2E7C58270B44B55CF3A220D7 /* HCVimeoVideoExtractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HCVimeoVideoExtractor.swift; path = HCVimeoVideoExtractor/Classes/HCVimeoVideoExtractor.swift; sourceTree = "<group>"; };
+		78D3BB5D2E7C58270B44B55CF3A220D7 /* HCVimeoVideoExtractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HCVimeoVideoExtractor.swift; path = Sources/HCVimeoVideoExtractor/HCVimeoVideoExtractor.swift; sourceTree = "<group>"; };
 		83358B54A2012AA5B13486465141C45D /* HCVimeoVideoExtractor-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "HCVimeoVideoExtractor-umbrella.h"; sourceTree = "<group>"; };
 		85FEA6E88631758C13C0AA0C41D31D04 /* Pods-HCVimeoVideoExtractor_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-HCVimeoVideoExtractor_Tests-dummy.m"; sourceTree = "<group>"; };
 		8EF0B901F9BE4BB538661F6B6E9E7301 /* Pods_HCVimeoVideoExtractor_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HCVimeoVideoExtractor_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -319,6 +319,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
