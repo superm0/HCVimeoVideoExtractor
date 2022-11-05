@@ -74,7 +74,7 @@ HCVimeoVideoExtractor.fetchVideoURLFrom(id: "video_id", completion: { ( video:HC
     
     print("Title = \(vid.title), url = \(vid.videoURL), thumbnail = \(vid.thumbnailURL)")
     
-    if let videoURL = vid.videoURL[.Quality1080p] {
+    if let videoURL = vid.videoURL[.quality1080p] {
         let player = AVPlayer(url: videoURL)
         let playerController = AVPlayerViewController()
         playerController.player = player
@@ -84,6 +84,9 @@ HCVimeoVideoExtractor.fetchVideoURLFrom(id: "video_id", completion: { ( video:HC
     }
 })
 ```
+
+## New Vimeo Videos
+For new Vimeo videos, starting October 2022, the video URL can be retrieved through ```.quality1080p``` or ```.qualityUnknown```.
 
 ## Author
 

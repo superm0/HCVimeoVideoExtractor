@@ -97,28 +97,36 @@ public class HCVimeoVideoExtractor: NSObject {
                         return
                     }
                     
+                  let video = HCVimeoVideo()
+                  if let title = (data as NSDictionary).value(forKeyPath: "video.title") as? String {
+                    video.title = title
+                  }
+                  
+                  if let thumbnails = (data as NSDictionary).value(forKeyPath: "video.thumbs") as? Dictionary<String,Any> {
+                    for (quality, url) in thumbnails {
+                      if let turl = url as? String {
+                        video.thumbnailURL[self.thumbnailQualityWith(string: quality)] = URL(string: turl)
+                      }
+                    }
+                  }
+                  
                     if let files = (data as NSDictionary).value(forKeyPath: "request.files.progressive") as? Array<Dictionary<String,Any>> {
-                        
-                        let video = HCVimeoVideo()
-                        if let title = (data as NSDictionary).value(forKeyPath: "video.title") as? String {
-                            video.title = title
-                        }
-                        
-                        if let thumbnails = (data as NSDictionary).value(forKeyPath: "video.thumbs") as? Dictionary<String,Any> {
-                            for (quality, url) in thumbnails {
-                                if let turl = url as? String {
-                                    video.thumbnailURL[self.thumbnailQualityWith(string: quality)] = URL(string: turl)
-                                }
-                            }
-                        }
-                        
+                      if files.count > 0 {
                         for file in files {
-                            if let quality = file["quality"] as? String {
-                                if let url = file["url"] as? String {
-                                    video.videoURL[self.videoQualityWith(string: quality)] = URL(string: url)
-                                }
+                          if let quality = file["quality"] as? String {
+                            if let url = file["url"] as? String {
+                              video.videoURL[self.videoQualityWith(string: quality)] = URL(string: url)
                             }
+                          }
                         }
+                      }
+                      else {
+                        if let hls = (data as NSDictionary).value(forKeyPath: "request.files.hls.cdns") as? [String: AnyObject],
+                           let url = hls.first?.value["url"] as? String {
+                            video.videoURL[.quality1080p] = URL(string: url)
+                            video.videoURL[.qualityUnknown] = URL(string: url)
+                        }
+                      }
                         
                         if video.videoURL.count > 0 {
                             completion(video, nil)
