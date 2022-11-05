@@ -69,7 +69,7 @@ class ViewController: UIViewController {
                 */
                         
                 DispatchQueue.main.async() {
-                    self.videoURL = vid.videoURL[.quality540p]
+                    self.videoURL = vid.videoURL[.quality1080p]
                     self.lblTitle.text = vid.title
                     
                     if let url = vid.thumbnailURL[.qualityBase] {
