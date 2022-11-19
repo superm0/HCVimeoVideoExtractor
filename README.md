@@ -4,15 +4,16 @@
 
 HCVimeoVideoExtractor is an easy to use Swift library for retrieving the Vimeo video details like title, thumbnail and mp4 URL which then can be used to play using AVPlayerView.
 
+<br>
 
 ## Requirements
----
+
 HCVimeoVideoExtractor requires iOS 9.0 and Swift 3.2 and above
 
-
+<br>
 
 ## Installation
----
+
 
 ### CocoaPods
 
@@ -26,6 +27,7 @@ pod 'HCVimeoVideoExtractor'
 and run `pod install`
 
 
+<br>
 
 ### Swift Package Manager
 For [Swift Package Manager](https://swift.org/package-manager/) add the following package to your Package.swift file. 
@@ -34,9 +36,10 @@ For [Swift Package Manager](https://swift.org/package-manager/) add the followin
 .package(url: "https://github.com/superm0/HCVimeoVideoExtractor.git", .upToNextMajor(from: "0.0.3")),
 ```
 
+<br>
 
 ## Usage
----
+
 Use the block based methods in `HCVimeoVideoExtractor` class to retrieve the Vimeo video details. Both methods will call a completion handler with two parameters. The first parameter is a `HCVimeoVideo` object which represents a Vimeo video. The second parameter is an `Error` object describing the network connection or internal processing error. 
 
 ```swift
