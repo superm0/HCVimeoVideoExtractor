@@ -33,7 +33,7 @@ and run `pod install`
 For [Swift Package Manager](https://swift.org/package-manager/) add the following package to your Package.swift file. 
 
 ```swift
-.package(url: "https://github.com/superm0/HCVimeoVideoExtractor.git", .upToNextMajor(from: "0.0.3")),
+.package(url: "https://github.com/superm0/HCVimeoVideoExtractor.git", .upToNextMajor(from: "0.0.4")),
 ```
 
 <br>

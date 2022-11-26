@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'HCVimeoVideoExtractor'
-  s.version          = '0.0.3'
+  s.version          = '0.0.4'
   s.summary          = 'HCVimeoVideoExtractor is an easy way to extract the Vimeo video details.'
 
 # This description is used to generate tags and improve search results.
@@ -29,6 +29,7 @@ HCVimeoVideoExtractor is an easy way to extract the Vimeo video details like tit
    s.social_media_url = 'https://twitter.com/sup3rm0'
 
   s.ios.deployment_target = '9.0'
+  s.swift_version = '4.0'
 
   s.source_files = 'Sources/HCVimeoVideoExtractor/**/*'
   
