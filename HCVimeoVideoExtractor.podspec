@@ -32,7 +32,7 @@ HCVimeoVideoExtractor is an easy way to extract the Vimeo video details like tit
   s.swift_version = '4.0'
 
   s.source_files = 'Sources/HCVimeoVideoExtractor/**/*'
-  
+  s.resource_bundles = {'HCVimeoVideoExtractor' => ['Sources/PrivacyInfo.xcprivacy']}
   # s.resource_bundles = {
   #   'HCVimeoVideoExtractor' => ['HCVimeoVideoExtractor/Assets/*.png']
   # }
