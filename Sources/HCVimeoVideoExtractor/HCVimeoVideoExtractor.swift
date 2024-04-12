@@ -110,34 +110,29 @@ public class HCVimeoVideoExtractor: NSObject {
                     }
                   }
                   
-                    if let files = (data as NSDictionary).value(forKeyPath: "request.files.progressive") as? Array<Dictionary<String,Any>> {
-                      if files.count > 0 {
-                        for file in files {
-                          if let quality = file["quality"] as? String {
-                            if let url = file["url"] as? String {
-                              video.videoURL[self.videoQualityWith(string: quality)] = URL(string: url)
-                            }
-                          }
+                  if let files = (data as NSDictionary).value(forKeyPath: "request.files.progressive") as? Array<Dictionary<String,Any>>, files.count > 0 {
+                    for file in files {
+                      if let quality = file["quality"] as? String {
+                        if let url = file["url"] as? String {
+                          video.videoURL[self.videoQualityWith(string: quality)] = URL(string: url)
                         }
                       }
-                      else {
-                        if let hls = (data as NSDictionary).value(forKeyPath: "request.files.hls.cdns") as? [String: AnyObject],
-                           let url = hls.first?.value["url"] as? String {
-                            video.videoURL[.quality1080p] = URL(string: url)
-                            video.videoURL[.qualityUnknown] = URL(string: url)
-                        }
-                      }
-                        
-                        if video.videoURL.count > 0 {
-                            completion(video, nil)
-                        }
-                        else {
-                            completion(nil, NSError(domain: HCVimeoVideoExtractor.domain, code:5, userInfo:[NSLocalizedDescriptionKey :  "Failed to retrive mp4 video url" , NSLocalizedFailureReasonErrorKey : "Failed to retrive mp4 video url"]))
-                        }
                     }
-                    else {
-                        completion(nil, NSError(domain: HCVimeoVideoExtractor.domain, code:4, userInfo:[NSLocalizedDescriptionKey :  "Failed to retrive mp4 video url" , NSLocalizedFailureReasonErrorKey : "Failed to retrive mp4 video url"]))
-                    }
+                  }
+                    
+                  if video.videoURL.count == 0,
+                    let hls = (data as NSDictionary).value(forKeyPath: "request.files.hls.cdns") as? [String: AnyObject],
+                    let url = hls.first?.value["url"] as? String {
+                      video.videoURL[.quality1080p] = URL(string: url)
+                      video.videoURL[.qualityUnknown] = URL(string: url)
+                  }
+                    
+                  if video.videoURL.count > 0 {
+                    completion(video, nil)
+                  }
+                  else {
+                    completion(nil, NSError(domain: HCVimeoVideoExtractor.domain, code:4, userInfo:[NSLocalizedDescriptionKey :  "Failed to retrieve mp4 video url" , NSLocalizedFailureReasonErrorKey : "Failed to retrieve mp4 video url"]))
+                  }
                 } catch  {
                     completion(nil, NSError(domain: HCVimeoVideoExtractor.domain, code:3, userInfo:[NSLocalizedDescriptionKey :  "Failed to parse Vimeo response" , NSLocalizedFailureReasonErrorKey : "Failed to parse Vimeo response"]))
                     return
