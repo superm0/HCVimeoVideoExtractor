@@ -34,15 +34,15 @@ public class HCVimeoVideoExtractor: NSObject {
     
     
     public static func fetchVideoURLFrom(url: URL, completion: @escaping (_ video: HCVimeoVideo?, _ error:Error?) -> Void) -> Void {
-        let videoId = url.lastPathComponent
-        if videoId != "" {
-            let videoExtractor = HCVimeoVideoExtractor(id: videoId)
-            videoExtractor.completion = completion
-            videoExtractor.start()
+        for pathComponent in url.pathComponents {
+            if CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: pathComponent)) {
+                let videoExtractor = HCVimeoVideoExtractor(id: pathComponent)
+                videoExtractor.completion = completion
+                videoExtractor.start()
+                return
+            }
         }
-        else {
-            completion(nil, NSError(domain: HCVimeoVideoExtractor.domain, code:0, userInfo:[NSLocalizedDescriptionKey :  "Invalid video id" , NSLocalizedFailureReasonErrorKey : "Failed to parse the video id"]))
-        }
+        completion(nil, NSError(domain: HCVimeoVideoExtractor.domain, code:0, userInfo:[NSLocalizedDescriptionKey :  "Invalid video id" , NSLocalizedFailureReasonErrorKey : "Failed to parse the video id"]))
     }
     
     public static func fetchVideoURLFrom(id: String, completion: @escaping (_ video: HCVimeoVideo?, _ error:Error?) -> Void) -> Void {
