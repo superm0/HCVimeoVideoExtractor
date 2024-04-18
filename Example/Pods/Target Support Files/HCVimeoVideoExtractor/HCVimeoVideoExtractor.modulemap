@@ -1,6 +1,0 @@
-framework module HCVimeoVideoExtractor {
-  umbrella header "HCVimeoVideoExtractor-umbrella.h"
-
-  export *
-  module * { export * }
-}
