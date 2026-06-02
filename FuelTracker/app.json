@@ -1,0 +1,46 @@
+{
+  "expo": {
+    "name": "FuelTracker",
+    "slug": "fuel-tracker",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#2563EB"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.fueltracker.app",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Used to capture vehicle photos",
+        "NSPhotoLibraryUsageDescription": "Used to select vehicle photos",
+        "NSLocationWhenInUseUsageDescription": "Used to detect nearby fuel stations"
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#2563EB"
+      },
+      "package": "com.fueltracker.app",
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-apple-authentication"
+    ],
+    "extra": {
+      "googleClientId": "YOUR_GOOGLE_CLIENT_ID",
+      "facebookAppId": "YOUR_FACEBOOK_APP_ID"
+    }
+  }
+}
