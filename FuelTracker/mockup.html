@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FuelTracker — App Mockup</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+    background: #0F172A;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 16px;
+    gap: 40px;
+  }
+  h1 { color: #F1F5F9; font-size: 28px; font-weight: 700; letter-spacing: -0.5px; }
+  h1 span { color: #3B82F6; }
+  .subtitle { color: #64748B; font-size: 14px; margin-top: 4px; }
+  .screen-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    justify-content: center;
+    width: 100%;
+    max-width: 1400px;
+  }
+  .screen-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .screen-label {
+    color: #94A3B8;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .phone {
+    width: 375px;
+    height: 812px;
+    background: #fff;
+    border-radius: 50px;
+    overflow: hidden;
+    box-shadow: 0 0 0 10px #1E293B, 0 0 0 12px #334155, 0 30px 80px rgba(0,0,0,0.6);
+    position: relative;
+    flex-shrink: 0;
+  }
+  .notch {
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 150px; height: 30px;
+    background: #1E293B;
+    border-radius: 0 0 20px 20px;
+    z-index: 100;
+  }
+  .screen { width: 100%; height: 100%; overflow: hidden; }
+
+  /* ═══════════════════════════════════════ WELCOME ═══ */
+  .welcome {
+    background: #fff;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .welcome-hero {
+    background: linear-gradient(160deg, #1D4ED8 0%, #2563EB 50%, #3B82F6 100%);
+    height: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-circle1 {
+    position: absolute; width: 200px; height: 200px; border-radius: 50%;
+    background: rgba(255,255,255,0.06); top: -60px; right: -40px;
+  }
+  .hero-circle2 {
+    position: absolute; width: 140px; height: 140px; border-radius: 50%;
+    background: rgba(255,255,255,0.08); bottom: 40px; left: -40px;
+  }
+  .hero-icon-wrap {
+    width: 80px; height: 80px; border-radius: 24px;
+    background: rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 16px; backdrop-filter: blur(10px);
+    font-size: 36px;
+  }
+  .hero-title { color: #fff; font-size: 32px; font-weight: 800; letter-spacing: -1px; }
+  .hero-sub { color: rgba(255,255,255,0.82); font-size: 14px; margin-top: 6px; }
+  .welcome-bottom {
+    flex: 1;
+    padding: 32px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .welcome-title { font-size: 24px; font-weight: 700; color: #111827; margin-bottom: 4px; }
+  .welcome-desc { font-size: 13px; color: #6B7280; line-height: 1.5; margin-bottom: 8px; }
+  .social-btn {
+    display: flex; align-items: center; justify-content: center;
+    gap: 10px; height: 50px; border-radius: 14px;
+    font-size: 15px; font-weight: 600; cursor: pointer;
+    border: none;
+  }
+  .btn-apple { background: #000; color: #fff; }
+  .btn-google { background: #fff; color: #111827; border: 1.5px solid #E5E7EB; }
+  .btn-facebook { background: #1877F2; color: #fff; }
+  .divider {
+    display: flex; align-items: center; gap: 12px;
+    color: #9CA3AF; font-size: 12px;
+  }
+  .divider::before, .divider::after {
+    content: ''; flex: 1; height: 1px; background: #E5E7EB;
+  }
+  .btn-guest {
+    height: 50px; border-radius: 14px; border: 1.5px solid #2563EB;
+    color: #2563EB; font-size: 15px; font-weight: 600;
+    background: transparent; display: flex; align-items: center; justify-content: center;
+  }
+  .footer-legal { font-size: 11px; color: #9CA3AF; text-align: center; margin-top: auto; }
+
+  /* ═══════════════════════════════════════ DASHBOARD ═══ */
+  .dashboard { background: #F9FAFB; height: 100%; display: flex; flex-direction: column; }
+  .dash-header {
+    background: linear-gradient(160deg, #1D4ED8 0%, #2563EB 60%, #3B82F6 100%);
+    padding: 48px 20px 20px;
+  }
+  .dash-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 16px; }
+  .dash-greeting { color: rgba(255,255,255,0.8); font-size: 13px; }
+  .dash-name { color: #fff; font-size: 22px; font-weight: 700; }
+  .dash-date { color: rgba(255,255,255,0.65); font-size: 12px; margin-top: 2px; }
+  .dash-avatar {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: rgba(255,255,255,0.25); display: flex;
+    align-items: center; justify-content: center;
+    color: #fff; font-size: 15px; font-weight: 700;
+  }
+  .car-pills { display: flex; gap: 8px; overflow: hidden; }
+  .car-pill {
+    padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
+    white-space: nowrap; flex-shrink: 0;
+  }
+  .car-pill.active { background: #fff; color: #2563EB; }
+  .car-pill.inactive { background: rgba(255,255,255,0.18); color: rgba(255,255,255,0.85); }
+  .dash-body { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 16px; }
+  .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .stat-card {
+    background: #fff; border-radius: 14px; padding: 14px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .stat-icon-row { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+  .stat-icon {
+    width: 32px; height: 32px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center; font-size: 16px;
+  }
+  .stat-label { font-size: 11px; color: #6B7280; font-weight: 500; }
+  .stat-value { font-size: 20px; font-weight: 700; color: #111827; }
+  .stat-unit { font-size: 11px; color: #9CA3AF; font-weight: 500; }
+  .section-hdr {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .section-title { font-size: 16px; font-weight: 700; color: #111827; }
+  .see-all { font-size: 13px; color: #2563EB; font-weight: 600; }
+  .fill-card {
+    background: #fff; border-radius: 14px; padding: 12px 14px;
+    display: flex; align-items: center; gap: 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05); margin-bottom: 8px;
+  }
+  .fill-icon {
+    width: 40px; height: 40px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0;
+  }
+  .fill-info { flex: 1; }
+  .fill-car { font-size: 13px; font-weight: 600; color: #111827; }
+  .fill-date { font-size: 11px; color: #9CA3AF; margin-top: 2px; }
+  .fill-right { text-align: right; }
+  .fill-liters { font-size: 14px; font-weight: 700; color: #111827; }
+  .fill-cost { font-size: 11px; color: #6B7280; margin-top: 2px; }
+  .tab-bar {
+    height: 74px; background: #fff; border-top: 1px solid #F3F4F6;
+    display: flex; align-items: center; justify-content: space-around;
+    padding: 0 8px; box-shadow: 0 -2px 12px rgba(0,0,0,0.06);
+  }
+  .tab-item {
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+    font-size: 10px; font-weight: 600; color: #9CA3AF; flex: 1;
+  }
+  .tab-item.active { color: #2563EB; }
+  .tab-icon { font-size: 22px; }
+  .tab-fab {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: #2563EB; display: flex; align-items: center; justify-content: center;
+    font-size: 26px; color: #fff; margin-bottom: 16px;
+    box-shadow: 0 4px 16px rgba(37,99,235,0.45);
+  }
+
+  /* ═══════════════════════════════════════ MY CARS ═══ */
+  .cars-screen { background: #F9FAFB; height: 100%; display: flex; flex-direction: column; }
+  .cars-header {
+    background: #fff; padding: 52px 20px 16px;
+    border-bottom: 1px solid #F3F4F6;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .screen-h-title { font-size: 26px; font-weight: 800; color: #111827; }
+  .add-btn {
+    width: 34px; height: 34px; border-radius: 50%;
+    background: #2563EB; display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 22px; font-weight: 300;
+  }
+  .cars-body { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+  .car-card {
+    background: #fff; border-radius: 18px; padding: 16px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+  }
+  .car-card-top { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .car-icon-circle {
+    width: 50px; height: 50px; border-radius: 16px;
+    display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0;
+  }
+  .car-info { flex: 1; }
+  .car-nickname { font-size: 16px; font-weight: 700; color: #111827; }
+  .car-detail { font-size: 12px; color: #6B7280; margin-top: 2px; }
+  .car-plate {
+    display: inline-block; padding: 2px 8px;
+    background: #F3F4F6; border-radius: 6px;
+    font-size: 11px; color: #374151; font-weight: 600; margin-top: 4px;
+  }
+  .car-badges { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+  .fuel-badge {
+    padding: 3px 8px; border-radius: 20px; font-size: 10px; font-weight: 700;
+  }
+  .default-badge {
+    padding: 3px 8px; border-radius: 20px; font-size: 10px; font-weight: 700;
+    background: #EFF6FF; color: #2563EB;
+  }
+  .car-stats {
+    display: flex; gap: 0; border-top: 1px solid #F3F4F6; padding-top: 12px;
+  }
+  .car-stat { flex: 1; text-align: center; }
+  .car-stat + .car-stat { border-left: 1px solid #F3F4F6; }
+  .car-stat-val { font-size: 14px; font-weight: 700; color: #111827; }
+  .car-stat-lbl { font-size: 10px; color: #9CA3AF; margin-top: 2px; }
+
+  /* ═══════════════════════════════════════ ADD FUEL LOG ═══ */
+  .addlog-screen { background: #F9FAFB; height: 100%; display: flex; flex-direction: column; }
+  .modal-header {
+    background: #fff; padding: 52px 20px 16px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid #F3F4F6;
+  }
+  .modal-title { font-size: 20px; font-weight: 700; color: #111827; }
+  .close-btn {
+    width: 32px; height: 32px; border-radius: 50%; background: #F3F4F6;
+    display: flex; align-items: center; justify-content: center; font-size: 16px; color: #374151;
+  }
+  .addlog-body { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 16px; }
+  .car-selector-h { display: flex; gap: 10px; overflow: hidden; }
+  .car-sel-card {
+    flex-shrink: 0; width: 130px; padding: 12px;
+    border-radius: 14px; border: 2px solid #E5E7EB; background: #fff;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .car-sel-card.selected { border-color: #2563EB; }
+  .car-sel-name { font-size: 13px; font-weight: 700; color: #111827; }
+  .car-sel-sub { font-size: 11px; color: #9CA3AF; }
+  .form-section {
+    background: #fff; border-radius: 16px; overflow: hidden;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+  }
+  .form-section-title {
+    padding: 12px 16px; font-size: 12px; font-weight: 700;
+    color: #2563EB; text-transform: uppercase; letter-spacing: 0.5px;
+    background: #EFF6FF; border-bottom: 1px solid #DBEAFE;
+  }
+  .form-row {
+    padding: 12px 16px; display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid #F9FAFB;
+  }
+  .form-row:last-child { border-bottom: none; }
+  .form-lbl { font-size: 14px; color: #374151; font-weight: 500; }
+  .form-val { font-size: 14px; font-weight: 600; color: #111827; }
+  .form-input-sim {
+    border: 1.5px solid #E5E7EB; border-radius: 10px;
+    padding: 8px 12px; font-size: 14px; color: #111827;
+    min-width: 100px; text-align: right; font-weight: 600; background: #F9FAFB;
+  }
+  .toggle-group { display: flex; border-radius: 10px; overflow: hidden; border: 1.5px solid #E5E7EB; }
+  .toggle-opt {
+    padding: 6px 14px; font-size: 12px; font-weight: 600; background: #fff; color: #6B7280;
+  }
+  .toggle-opt.on { background: #2563EB; color: #fff; }
+  .fuel-segs { display: flex; gap: 6px; padding: 10px 16px; flex-wrap: wrap; }
+  .fuel-seg {
+    padding: 5px 10px; border-radius: 20px; font-size: 11px; font-weight: 700;
+    border: 1.5px solid #E5E7EB; background: #fff; color: #6B7280;
+  }
+  .fuel-seg.active { background: #EF4444; border-color: #EF4444; color: #fff; }
+  .save-btn {
+    margin: 0 16px 24px; height: 52px; border-radius: 16px;
+    background: #2563EB; display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 16px; font-weight: 700;
+    box-shadow: 0 4px 16px rgba(37,99,235,0.35);
+  }
+
+  /* ═══════════════════════════════════════ REPORTS ═══ */
+  .reports-screen { background: #F9FAFB; height: 100%; display: flex; flex-direction: column; }
+  .reports-header {
+    background: #fff; padding: 52px 20px 16px; border-bottom: 1px solid #F3F4F6;
+  }
+  .reports-title { font-size: 26px; font-weight: 800; color: #111827; }
+  .reports-sub { font-size: 12px; color: #6B7280; margin-top: 2px; }
+  .period-toggle { display: flex; gap: 6px; margin-top: 14px; }
+  .period-btn {
+    padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 700;
+    background: #F3F4F6; color: #6B7280;
+  }
+  .period-btn.active { background: #2563EB; color: #fff; }
+  .reports-body { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 14px; }
+  .summary-pills-row { display: flex; gap: 8px; overflow: hidden; }
+  .sum-pill {
+    flex-shrink: 0; background: #fff; border-radius: 14px; padding: 12px 14px;
+    display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 90px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .sum-icon { font-size: 18px; margin-bottom: 2px; }
+  .sum-val { font-size: 14px; font-weight: 800; color: #111827; text-align: center; }
+  .sum-lbl { font-size: 9px; color: #9CA3AF; font-weight: 600; text-transform: uppercase; text-align: center; }
+  .chart-card {
+    background: #fff; border-radius: 16px; padding: 16px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+  }
+  .chart-card-title { font-size: 14px; font-weight: 700; color: #111827; margin-bottom: 14px; }
+  .chart-area {
+    height: 140px; background: linear-gradient(to top, rgba(37,99,235,0.08), transparent);
+    border-radius: 10px; position: relative; display: flex; align-items: flex-end;
+    padding: 0 4px 0; gap: 3px;
+  }
+  .bar { border-radius: 4px 4px 0 0; background: #2563EB; flex: 1; opacity: 0.85; }
+  .line-chart-sim {
+    height: 130px; position: relative; overflow: hidden;
+  }
+  .line-path {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 100%; background: transparent;
+  }
+  .comp-card {
+    background: #fff; border-radius: 16px; overflow: hidden;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+  }
+  .comp-hdr {
+    display: flex; padding: 12px 16px; background: #F9FAFB;
+    border-bottom: 1px solid #F3F4F6; gap: 0;
+  }
+  .comp-hdr-lbl { flex: 1.5; font-size: 11px; font-weight: 600; color: #9CA3AF; text-transform: uppercase; }
+  .comp-hdr-col { flex: 1; font-size: 11px; font-weight: 700; color: #374151; text-align: center; }
+  .comp-row {
+    display: flex; align-items: center; padding: 10px 16px;
+    border-bottom: 1px solid #F9FAFB;
+  }
+  .comp-lbl { flex: 1.5; font-size: 13px; color: #374151; font-weight: 500; }
+  .comp-cur { flex: 1; font-size: 13px; font-weight: 700; color: #111827; text-align: center; }
+  .comp-prv { flex: 1; font-size: 13px; color: #6B7280; text-align: center; }
+  .comp-chg { width: 44px; text-align: right; font-size: 11px; font-weight: 700; }
+  .chg-up { color: #EF4444; }
+  .chg-dn { color: #10B981; }
+
+  /* ═══════════════════════════════════════ CAR DETAIL ═══ */
+  .cardetail-screen { background: #F9FAFB; height: 100%; display: flex; flex-direction: column; }
+  .cd-header {
+    background: linear-gradient(160deg, #1D4ED8 0%, #2563EB 60%, #3B82F6 100%);
+    padding: 48px 20px 20px;
+  }
+  .cd-back { color: rgba(255,255,255,0.8); font-size: 13px; margin-bottom: 12px; display: flex; align-items: center; gap: 4px; }
+  .cd-top { display: flex; align-items: center; gap: 14px; }
+  .cd-car-icon {
+    width: 56px; height: 56px; border-radius: 18px;
+    background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 28px;
+  }
+  .cd-car-name { color: #fff; font-size: 22px; font-weight: 800; }
+  .cd-car-sub { color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 2px; }
+  .cd-plate-badge {
+    display: inline-block; margin-top: 6px; padding: 3px 10px; border-radius: 6px;
+    background: rgba(255,255,255,0.2); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 1px;
+  }
+  .cd-tabs {
+    display: flex; background: #fff; border-bottom: 2px solid #F3F4F6;
+  }
+  .cd-tab {
+    flex: 1; padding: 13px; text-align: center; font-size: 13px; font-weight: 600; color: #9CA3AF;
+    border-bottom: 2px solid transparent; margin-bottom: -2px;
+  }
+  .cd-tab.active { color: #2563EB; border-bottom-color: #2563EB; }
+  .cd-body { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 14px; }
+  .cd-stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .odo-card {
+    background: #fff; border-radius: 16px; padding: 16px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+  }
+  .odo-title { font-size: 13px; font-weight: 600; color: #374151; margin-bottom: 10px; }
+  .odo-bar-bg { height: 8px; background: #E5E7EB; border-radius: 4px; overflow: hidden; }
+  .odo-bar-fill { height: 100%; background: linear-gradient(90deg, #2563EB, #3B82F6); border-radius: 4px; width: 63%; }
+  .odo-nums { display: flex; justify-content: space-between; margin-top: 6px; }
+  .odo-current { font-size: 13px; font-weight: 700; color: #111827; }
+  .odo-next { font-size: 11px; color: #9CA3AF; }
+  .action-row { display: flex; gap: 10px; }
+  .action-btn {
+    flex: 1; height: 46px; border-radius: 14px; display: flex;
+    align-items: center; justify-content: center; gap: 8px;
+    font-size: 14px; font-weight: 700;
+  }
+  .action-primary { background: #2563EB; color: #fff; }
+  .action-outline { background: #fff; color: #2563EB; border: 1.5px solid #2563EB; }
+  .history-row {
+    background: #fff; border-radius: 14px; padding: 12px 14px;
+    display: flex; align-items: center; gap: 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  }
+
+  /* ═══════════════════════════════════════ SETTINGS ═══ */
+  .settings-screen { background: #F9FAFB; height: 100%; display: flex; flex-direction: column; }
+  .settings-header {
+    background: #fff; padding: 52px 20px 16px; border-bottom: 1px solid #F3F4F6;
+  }
+  .profile-card {
+    background: #fff; margin: 16px; border-radius: 20px; padding: 20px;
+    display: flex; align-items: center; gap: 14px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+  }
+  .profile-avatar {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: linear-gradient(135deg, #2563EB, #3B82F6);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 22px; font-weight: 800;
+  }
+  .profile-name { font-size: 17px; font-weight: 700; color: #111827; }
+  .profile-email { font-size: 12px; color: #6B7280; margin-top: 2px; }
+  .profile-badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 3px 8px; border-radius: 20px; font-size: 10px; font-weight: 700;
+    background: #000; color: #fff; margin-top: 4px;
+  }
+  .settings-section { margin: 0 16px 12px; }
+  .settings-section-title {
+    font-size: 11px; font-weight: 700; color: #9CA3AF; text-transform: uppercase;
+    letter-spacing: 0.8px; margin-bottom: 8px; padding-left: 4px;
+  }
+  .settings-card { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 1px 6px rgba(0,0,0,0.05); }
+  .settings-row {
+    display: flex; align-items: center; padding: 14px 16px;
+    border-bottom: 1px solid #F9FAFB; gap: 12px;
+  }
+  .settings-row:last-child { border-bottom: none; }
+  .settings-row-icon {
+    width: 32px; height: 32px; border-radius: 9px;
+    display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0;
+  }
+  .settings-row-label { flex: 1; font-size: 14px; font-weight: 500; color: #111827; }
+  .settings-row-val { font-size: 13px; color: #9CA3AF; font-weight: 500; }
+  .toggle-sim {
+    width: 44px; height: 26px; border-radius: 13px; background: #10B981;
+    position: relative;
+  }
+  .toggle-thumb {
+    position: absolute; right: 3px; top: 3px;
+    width: 20px; height: 20px; border-radius: 50%; background: #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  }
+  .signout-btn {
+    margin: 0 16px 24px; height: 50px; border-radius: 16px;
+    background: #FEF2F2; display: flex; align-items: center; justify-content: center;
+    color: #EF4444; font-size: 15px; font-weight: 700; gap: 8px;
+  }
+
+  /* Line chart SVG simulation */
+  .chart-svg { width: 100%; height: 130px; }
+  .monthly-bars { display: flex; align-items: flex-end; gap: 6px; height: 120px; padding: 0 4px; }
+  .m-bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .m-bar { width: 100%; border-radius: 5px 5px 0 0; background: #2563EB; min-height: 4px; }
+  .m-bar-lbl { font-size: 9px; color: #9CA3AF; text-align: center; }
+  .m-bar-val { font-size: 9px; color: #2563EB; font-weight: 700; text-align: center; }
+
+  /* Responsive */
+  @media (max-width: 800px) {
+    .phone { transform: scale(0.85); transform-origin: top center; }
+  }
+
+  .title-row { text-align: center; }
+  .badge-row { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 12px; }
+  .tech-badge {
+    padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;
+    background: #1E293B; color: #94A3B8; border: 1px solid #334155;
+  }
+</style>
+</head>
+<body>
+
+<div class="title-row">
+  <h1>⛽ <span>FuelTracker</span> — App Mockup</h1>
+  <p class="subtitle">Cross-platform iOS & Android · React Native + Expo</p>
+  <div class="badge-row">
+    <span class="tech-badge">🔷 TypeScript</span>
+    <span class="tech-badge">📱 React Native</span>
+    <span class="tech-badge">⚡ Expo SDK 56</span>
+    <span class="tech-badge">🗂 Zustand</span>
+    <span class="tech-badge">📊 react-native-chart-kit</span>
+    <span class="tech-badge">🔐 Apple · Google · Facebook Auth</span>
+  </div>
+</div>
+
+<div class="screen-grid">
+
+  <!-- ══ WELCOME ══ -->
+  <div class="screen-wrap">
+    <span class="screen-label">1 · Welcome</span>
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="screen">
+        <div class="welcome">
+          <div class="welcome-hero">
+            <div class="hero-circle1"></div>
+            <div class="hero-circle2"></div>
+            <div class="hero-icon-wrap">🚗</div>
+            <div class="hero-title">FuelTracker</div>
+            <div class="hero-sub">Track every drop, save every dollar</div>
+          </div>
+          <div class="welcome-bottom">
+            <div class="welcome-title">Get Started</div>
+            <div class="welcome-desc">Sign in to sync across devices or continue as a guest.</div>
+            <button class="social-btn btn-apple">🍎 Continue with Apple</button>
+            <button class="social-btn btn-google">🔴 Continue with Google</button>
+            <button class="social-btn btn-facebook">📘 Continue with Facebook</button>
+            <div class="divider">or</div>
+            <div class="btn-guest">Continue as Guest</div>
+            <div class="footer-legal">By continuing you agree to our Terms &amp; Privacy Policy</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ DASHBOARD ══ -->
+  <div class="screen-wrap">
+    <span class="screen-label">2 · Dashboard</span>
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="screen">
+        <div class="dashboard">
+          <div class="dash-header">
+            <div class="dash-top">
+              <div>
+                <div class="dash-greeting">Good morning,</div>
+                <div class="dash-name">Maria 👋</div>
+                <div class="dash-date">Monday, June 2, 2026</div>
+              </div>
+              <div style="display:flex;gap:10px;align-items:center">
+                <span style="font-size:22px;color:rgba(255,255,255,0.8)">🔔</span>
+                <div class="dash-avatar">M</div>
+              </div>
+            </div>
+            <div class="car-pills">
+              <div class="car-pill active">🚗 My Honda</div>
+              <div class="car-pill inactive">🚙 Toyota 4x4</div>
+              <div class="car-pill inactive">+ Add Car</div>
+            </div>
+          </div>
+          <div class="dash-body">
+            <!-- Stats -->
+            <div class="stats-grid">
+              <div class="stat-card">
+                <div class="stat-icon-row">
+                  <div class="stat-icon" style="background:#EFF6FF">💰</div>
+                  <span class="stat-label">This Month</span>
+                </div>
+                <div class="stat-value">$124<span class="stat-unit">.50</span></div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon-row">
+                  <div class="stat-icon" style="background:#ECFDF5">⚡</div>
+                  <span class="stat-label">Avg Efficiency</span>
+                </div>
+                <div class="stat-value">8.2<span class="stat-unit"> L/100</span></div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon-row">
+                  <div class="stat-icon" style="background:#FFF7ED">📍</div>
+                  <span class="stat-label">Total Distance</span>
+                </div>
+                <div class="stat-value">1,240<span class="stat-unit"> km</span></div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon-row">
+                  <div class="stat-icon" style="background:#FEF2F2">🕐</div>
+                  <span class="stat-label">Last Fill-up</span>
+                </div>
+                <div class="stat-value" style="font-size:15px">3 days ago</div>
+              </div>
+            </div>
+            <!-- Recent Fill-ups -->
+            <div>
+              <div class="section-hdr">
+                <span class="section-title">Recent Fill-ups</span>
+                <span class="see-all">See all</span>
+              </div>
+              <div class="fill-card">
+                <div class="fill-icon" style="background:#FEF2F2">⛽</div>
+                <div class="fill-info">
+                  <div class="fill-car">My Honda</div>
+                  <div class="fill-date">Shell EDSA · May 30, 2026</div>
+                </div>
+                <div class="fill-right">
+                  <div class="fill-liters">42.5 L</div>
+                  <div class="fill-cost">$68.00</div>
+                </div>
+              </div>
+              <div class="fill-card">
+                <div class="fill-icon" style="background:#FEF2F2">⛽</div>
+                <div class="fill-info">
+                  <div class="fill-car">My Honda</div>
+                  <div class="fill-date">Petron BGC · May 18, 2026</div>
+                </div>
+                <div class="fill-right">
+                  <div class="fill-liters">35.0 L</div>
+                  <div class="fill-cost">$56.50</div>
+                </div>
+              </div>
+            </div>
+            <!-- Monthly comparison mini -->
+            <div class="chart-card">
+              <div class="chart-card-title">📅 Month vs Last Month</div>
+              <div style="display:flex;gap:16px;align-items:center">
+                <div>
+                  <div style="font-size:11px;color:#9CA3AF">May</div>
+                  <div style="font-size:18px;font-weight:800;color:#111827">$124</div>
+                </div>
+                <div style="flex:1;height:6px;border-radius:3px;background:#E5E7EB;overflow:hidden">
+                  <div style="width:78%;height:100%;background:#2563EB;border-radius:3px"></div>
+                </div>
+                <div style="text-align:right">
+                  <div style="font-size:11px;color:#9CA3AF">Apr</div>
+                  <div style="font-size:18px;font-weight:800;color:#111827">$159</div>
+                </div>
+              </div>
+              <div style="font-size:12px;color:#10B981;font-weight:600;margin-top:8px">↓ 22% less than last month</div>
+            </div>
+          </div>
+          <div class="tab-bar">
+            <div class="tab-item active"><span class="tab-icon">🏠</span>Home</div>
+            <div class="tab-item"><span class="tab-icon">🚗</span>Cars</div>
+            <div class="tab-fab">+</div>
+            <div class="tab-item"><span class="tab-icon">📊</span>Reports</div>
+            <div class="tab-item"><span class="tab-icon">👤</span>Profile</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ MY CARS ══ -->
+  <div class="screen-wrap">
+    <span class="screen-label">3 · My Cars</span>
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="screen">
+        <div class="cars-screen">
+          <div class="cars-header">
+            <span class="screen-h-title">My Cars</span>
+            <div class="add-btn">+</div>
+          </div>
+          <div class="cars-body">
+            <!-- Car 1 -->
+            <div class="car-card">
+              <div class="car-card-top">
+                <div class="car-icon-circle" style="background:#EFF6FF">🚗</div>
+                <div class="car-info">
+                  <div class="car-nickname">My Honda</div>
+                  <div class="car-detail">2022 Honda Civic</div>
+                  <div class="car-plate">ABC-1234</div>
+                </div>
+                <div class="car-badges">
+                  <div class="fuel-badge" style="background:#FEF2F2;color:#EF4444">Gasoline</div>
+                  <div class="default-badge">⭐ Default</div>
+                </div>
+              </div>
+              <div class="car-stats">
+                <div class="car-stat">
+                  <div class="car-stat-val">18,450</div>
+                  <div class="car-stat-lbl">km</div>
+                </div>
+                <div class="car-stat">
+                  <div class="car-stat-val">23</div>
+                  <div class="car-stat-lbl">fill-ups</div>
+                </div>
+                <div class="car-stat">
+                  <div class="car-stat-val">$842</div>
+                  <div class="car-stat-lbl">total spent</div>
+                </div>
+                <div class="car-stat">
+                  <div class="car-stat-val">8.1</div>
+                  <div class="car-stat-lbl">L/100km</div>
+                </div>
+              </div>
+            </div>
+            <!-- Car 2 -->
+            <div class="car-card">
+              <div class="car-card-top">
+                <div class="car-icon-circle" style="background:#ECFDF5">🚙</div>
+                <div class="car-info">
+                  <div class="car-nickname">Toyota 4x4</div>
+                  <div class="car-detail">2019 Toyota Fortuner</div>
+                  <div class="car-plate">XYZ-5678</div>
+                </div>
+                <div class="car-badges">
+                  <div class="fuel-badge" style="background:#FFF7ED;color:#F97316">Diesel</div>
+                </div>
+              </div>
+              <div class="car-stats">
+                <div class="car-stat">
+                  <div class="car-stat-val">52,810</div>
+                  <div class="car-stat-lbl">km</div>
+                </div>
+                <div class="car-stat">
+                  <div class="car-stat-val">67</div>
+                  <div class="car-stat-lbl">fill-ups</div>
+                </div>
+                <div class="car-stat">
+                  <div class="car-stat-val">$3,241</div>
+                  <div class="car-stat-lbl">total spent</div>
+                </div>
+                <div class="car-stat">
+                  <div class="car-stat-val">11.4</div>
+                  <div class="car-stat-lbl">L/100km</div>
+                </div>
+              </div>
+            </div>
+            <!-- Add car CTA -->
+            <div style="background:#fff;border-radius:18px;padding:20px;text-align:center;border:2px dashed #E5E7EB;display:flex;flex-direction:column;align-items:center;gap:8px">
+              <span style="font-size:28px">➕</span>
+              <div style="font-size:14px;font-weight:700;color:#374151">Add Another Car</div>
+              <div style="font-size:12px;color:#9CA3AF">Track all your vehicles in one place</div>
+            </div>
+          </div>
+          <div class="tab-bar">
+            <div class="tab-item"><span class="tab-icon">🏠</span>Home</div>
+            <div class="tab-item active"><span class="tab-icon">🚗</span>Cars</div>
+            <div class="tab-fab">+</div>
+            <div class="tab-item"><span class="tab-icon">📊</span>Reports</div>
+            <div class="tab-item"><span class="tab-icon">👤</span>Profile</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ CAR DETAIL ══ -->
+  <div class="screen-wrap">
+    <span class="screen-label">4 · Car Detail</span>
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="screen">
+        <div class="cardetail-screen">
+          <div class="cd-header">
+            <div class="cd-back">← My Cars</div>
+            <div class="cd-top">
+              <div class="cd-car-icon">🚗</div>
+              <div>
+                <div class="cd-car-name">My Honda</div>
+                <div class="cd-car-sub">2022 Honda Civic · Gasoline</div>
+                <div class="cd-plate-badge">ABC-1234</div>
+              </div>
+              <div style="margin-left:auto;color:rgba(255,255,255,0.8);font-size:20px">✏️</div>
+            </div>
+          </div>
+          <div class="cd-tabs">
+            <div class="cd-tab active">Overview</div>
+            <div class="cd-tab">Fuel History</div>
+            <div class="cd-tab">Services</div>
+          </div>
+          <div class="cd-body">
+            <div class="cd-stats-grid">
+              <div class="stat-card">
+                <div class="stat-icon-row">
+                  <div class="stat-icon" style="background:#EFF6FF">⛽</div>
+                  <span class="stat-label">Fill-ups</span>
+                </div>
+                <div class="stat-value">23</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon-row">
+                  <div class="stat-icon" style="background:#ECFDF5">💰</div>
+                  <span class="stat-label">Total Spent</span>
+                </div>
+                <div class="stat-value" style="font-size:18px">$842</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon-row">
+                  <div class="stat-icon" style="background:#FFF7ED">📈</div>
+                  <span class="stat-label">Avg L/100km</span>
+                </div>
+                <div class="stat-value">8.1</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon-row">
+                  <div class="stat-icon" style="background:#FEF2F2">🛣️</div>
+                  <span class="stat-label">Distance</span>
+                </div>
+                <div class="stat-value" style="font-size:16px">10,380<span class="stat-unit">km</span></div>
+              </div>
+            </div>
+            <!-- Odometer -->
+            <div class="odo-card">
+              <div class="odo-title">🔢 Odometer Progress</div>
+              <div class="odo-bar-bg"><div class="odo-bar-fill"></div></div>
+              <div class="odo-nums">
+                <span class="odo-current">18,450 km</span>
+                <span class="odo-next">Next: 20,000 km</span>
+              </div>
+            </div>
+            <!-- Actions -->
+            <div class="action-row">
+              <div class="action-btn action-primary">⛽ Log Fuel</div>
+              <div class="action-btn action-outline">✏️ Edit Car</div>
+            </div>
+            <!-- Last fill-up -->
+            <div class="history-row">
+              <div class="fill-icon" style="background:#FEF2F2;width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px">⛽</div>
+              <div class="fill-info">
+                <div class="fill-car">Last Fill-up · May 30, 2026</div>
+                <div class="fill-date">Shell EDSA · Full tank</div>
+              </div>
+              <div class="fill-right">
+                <div class="fill-liters">42.5 L</div>
+                <div class="fill-cost">$68.00</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ ADD FUEL LOG ══ -->
+  <div class="screen-wrap">
+    <span class="screen-label">5 · Log Fill-up</span>
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="screen">
+        <div class="addlog-screen">
+          <div class="modal-header">
+            <div class="modal-title">Log Fill-up</div>
+            <div class="close-btn">✕</div>
+          </div>
+          <div class="addlog-body">
+            <!-- Car selector -->
+            <div>
+              <div style="font-size:12px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px">Select Car</div>
+              <div class="car-selector-h">
+                <div class="car-sel-card selected">
+                  <span style="font-size:20px">🚗</span>
+                  <div class="car-sel-name">My Honda</div>
+                  <div class="car-sel-sub">2022 · 18,450 km</div>
+                </div>
+                <div class="car-sel-card">
+                  <span style="font-size:20px">🚙</span>
+                  <div class="car-sel-name">Toyota 4x4</div>
+                  <div class="car-sel-sub">2019 · 52,810 km</div>
+                </div>
+              </div>
+            </div>
+            <!-- Section 1 -->
+            <div class="form-section">
+              <div class="form-section-title">Fill-up Details</div>
+              <div class="form-row">
+                <span class="form-lbl">📅 Date</span>
+                <span class="form-val">Jun 2, 2026</span>
+              </div>
+              <div class="form-row">
+                <span class="form-lbl">🔢 Odometer</span>
+                <div class="form-input-sim">18,492</div>
+              </div>
+              <div class="form-row">
+                <span class="form-lbl">Full Tank?</span>
+                <div class="toggle-group">
+                  <div class="toggle-opt on">Yes</div>
+                  <div class="toggle-opt">No</div>
+                </div>
+              </div>
+            </div>
+            <!-- Section 2 -->
+            <div class="form-section">
+              <div class="form-section-title">Fuel Details</div>
+              <div class="form-row">
+                <span class="form-lbl">💧 Liters</span>
+                <div class="form-input-sim">40.00 L</div>
+              </div>
+              <div class="form-row">
+                <span class="form-lbl">💲 Price/Liter</span>
+                <div class="form-input-sim">$1.60</div>
+              </div>
+              <div class="form-row">
+                <span class="form-lbl">💰 Total Cost</span>
+                <div style="font-size:16px;font-weight:800;color:#2563EB">$64.00</div>
+              </div>
+              <div class="fuel-segs">
+                <div class="fuel-seg active">Gasoline</div>
+                <div class="fuel-seg">Diesel</div>
+                <div class="fuel-seg">Electric</div>
+                <div class="fuel-seg">LPG</div>
+              </div>
+            </div>
+            <!-- Section 3 -->
+            <div class="form-section">
+              <div class="form-section-title">Station (Optional)</div>
+              <div class="form-row">
+                <span class="form-lbl">⛽ Station</span>
+                <span style="font-size:13px;color:#9CA3AF">Shell EDSA</span>
+              </div>
+            </div>
+          </div>
+          <div class="save-btn">Save Fill-up</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ REPORTS ══ -->
+  <div class="screen-wrap">
+    <span class="screen-label">6 · Reports</span>
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="screen">
+        <div class="reports-screen">
+          <div class="reports-header">
+            <div class="reports-title">Analytics</div>
+            <div class="reports-sub">Jan 2026 – Jun 2026</div>
+            <div class="period-toggle">
+              <div class="period-btn">3M</div>
+              <div class="period-btn active">6M</div>
+              <div class="period-btn">1Y</div>
+              <div class="period-btn">All</div>
+            </div>
+          </div>
+          <div class="reports-body">
+            <!-- Summary pills -->
+            <div class="summary-pills-row">
+              <div class="sum-pill">
+                <span class="sum-icon">💰</span>
+                <div class="sum-val">$842</div>
+                <div class="sum-lbl">Total Cost</div>
+              </div>
+              <div class="sum-pill">
+                <span class="sum-icon">💧</span>
+                <div class="sum-val">526L</div>
+                <div class="sum-lbl">Volume</div>
+              </div>
+              <div class="sum-pill">
+                <span class="sum-icon">⚡</span>
+                <div class="sum-val">8.2</div>
+                <div class="sum-lbl">L/100km</div>
+              </div>
+              <div class="sum-pill">
+                <span class="sum-icon">🛣️</span>
+                <div class="sum-val">6.4k</div>
+                <div class="sum-lbl">km</div>
+              </div>
+            </div>
+            <!-- Bar Chart -->
+            <div class="chart-card">
+              <div class="chart-card-title">📊 Monthly Cost</div>
+              <div class="monthly-bars">
+                <div class="m-bar-wrap">
+                  <div class="m-bar-val">$98</div>
+                  <div class="m-bar" style="height:65px;opacity:0.6"></div>
+                  <div class="m-bar-lbl">Jan</div>
+                </div>
+                <div class="m-bar-wrap">
+                  <div class="m-bar-val">$142</div>
+                  <div class="m-bar" style="height:95px;opacity:0.7"></div>
+                  <div class="m-bar-lbl">Feb</div>
+                </div>
+                <div class="m-bar-wrap">
+                  <div class="m-bar-val">$115</div>
+                  <div class="m-bar" style="height:77px;opacity:0.75"></div>
+                  <div class="m-bar-lbl">Mar</div>
+                </div>
+                <div class="m-bar-wrap">
+                  <div class="m-bar-val">$159</div>
+                  <div class="m-bar" style="height:106px;opacity:0.85"></div>
+                  <div class="m-bar-lbl">Apr</div>
+                </div>
+                <div class="m-bar-wrap">
+                  <div class="m-bar-val">$204</div>
+                  <div class="m-bar" style="height:136px"></div>
+                  <div class="m-bar-lbl">May</div>
+                </div>
+                <div class="m-bar-wrap">
+                  <div class="m-bar-val">$124</div>
+                  <div class="m-bar" style="height:83px;opacity:0.9;background:#10B981"></div>
+                  <div class="m-bar-lbl">Jun</div>
+                </div>
+              </div>
+            </div>
+            <!-- Comparison -->
+            <div class="comp-card">
+              <div class="chart-card-title" style="padding:14px 16px 0">🔁 Period Comparison</div>
+              <div class="comp-hdr">
+                <div class="comp-hdr-lbl">Metric</div>
+                <div class="comp-hdr-col">Now</div>
+                <div class="comp-hdr-col">Before</div>
+                <div style="width:44px"></div>
+              </div>
+              <div class="comp-row">
+                <div class="comp-lbl">Avg L/100km</div>
+                <div class="comp-cur">8.2</div>
+                <div class="comp-prv">9.1</div>
+                <div class="comp-chg chg-dn">↓9.9%</div>
+              </div>
+              <div class="comp-row">
+                <div class="comp-lbl">Total Cost</div>
+                <div class="comp-cur">$842</div>
+                <div class="comp-prv">$971</div>
+                <div class="comp-chg chg-dn">↓13%</div>
+              </div>
+              <div class="comp-row">
+                <div class="comp-lbl">Total km</div>
+                <div class="comp-cur">6,420</div>
+                <div class="comp-prv">5,890</div>
+                <div class="comp-chg chg-up">↑9%</div>
+              </div>
+              <div class="comp-row" style="border:none">
+                <div class="comp-lbl">$/km</div>
+                <div class="comp-cur">$0.13</div>
+                <div class="comp-prv">$0.16</div>
+                <div class="comp-chg chg-dn">↓19%</div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-bar">
+            <div class="tab-item"><span class="tab-icon">🏠</span>Home</div>
+            <div class="tab-item"><span class="tab-icon">🚗</span>Cars</div>
+            <div class="tab-fab">+</div>
+            <div class="tab-item active"><span class="tab-icon">📊</span>Reports</div>
+            <div class="tab-item"><span class="tab-icon">👤</span>Profile</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SETTINGS ══ -->
+  <div class="screen-wrap">
+    <span class="screen-label">7 · Settings</span>
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="screen">
+        <div class="settings-screen">
+          <div class="settings-header">
+            <div class="screen-h-title">Profile</div>
+          </div>
+          <!-- Profile -->
+          <div class="profile-card">
+            <div class="profile-avatar">M</div>
+            <div>
+              <div class="profile-name">Maria Santos</div>
+              <div class="profile-email">maria@gmail.com</div>
+              <div class="profile-badge">🍎 Apple</div>
+            </div>
+            <div style="margin-left:auto;font-size:20px;color:#D1D5DB">›</div>
+          </div>
+          <div style="flex:1;overflow-y:auto">
+            <!-- App Settings -->
+            <div class="settings-section">
+              <div class="settings-section-title">App Settings</div>
+              <div class="settings-card">
+                <div class="settings-row">
+                  <div class="settings-row-icon" style="background:#EFF6FF">📏</div>
+                  <div class="settings-row-label">Distance Unit</div>
+                  <div class="settings-row-val">km</div>
+                  <div style="color:#D1D5DB;margin-left:4px">›</div>
+                </div>
+                <div class="settings-row">
+                  <div class="settings-row-icon" style="background:#ECFDF5">💧</div>
+                  <div class="settings-row-label">Volume Unit</div>
+                  <div class="settings-row-val">Liters</div>
+                  <div style="color:#D1D5DB;margin-left:4px">›</div>
+                </div>
+                <div class="settings-row">
+                  <div class="settings-row-icon" style="background:#FFF7ED">💲</div>
+                  <div class="settings-row-label">Currency</div>
+                  <div class="settings-row-val">USD $</div>
+                  <div style="color:#D1D5DB;margin-left:4px">›</div>
+                </div>
+                <div class="settings-row">
+                  <div class="settings-row-icon" style="background:#F5F3FF">🌓</div>
+                  <div class="settings-row-label">Theme</div>
+                  <div class="settings-row-val">System</div>
+                  <div style="color:#D1D5DB;margin-left:4px">›</div>
+                </div>
+              </div>
+            </div>
+            <!-- Reminders -->
+            <div class="settings-section">
+              <div class="settings-section-title">Reminders</div>
+              <div class="settings-card">
+                <div class="settings-row">
+                  <div class="settings-row-icon" style="background:#ECFDF5">🔔</div>
+                  <div class="settings-row-label">Notifications</div>
+                  <div class="toggle-sim"><div class="toggle-thumb"></div></div>
+                </div>
+              </div>
+            </div>
+            <!-- About -->
+            <div class="settings-section">
+              <div class="settings-section-title">About</div>
+              <div class="settings-card">
+                <div class="settings-row">
+                  <div class="settings-row-icon" style="background:#F3F4F6">ℹ️</div>
+                  <div class="settings-row-label">App Version</div>
+                  <div class="settings-row-val">1.0.0</div>
+                </div>
+                <div class="settings-row">
+                  <div class="settings-row-icon" style="background:#FFF7ED">⭐</div>
+                  <div class="settings-row-label">Rate App</div>
+                  <div style="color:#D1D5DB;margin-left:auto">›</div>
+                </div>
+                <div class="settings-row">
+                  <div class="settings-row-icon" style="background:#EFF6FF">🔗</div>
+                  <div class="settings-row-label">Share App</div>
+                  <div style="color:#D1D5DB;margin-left:auto">›</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="signout-btn">🚪 Sign Out</div>
+          <div class="tab-bar">
+            <div class="tab-item"><span class="tab-icon">🏠</span>Home</div>
+            <div class="tab-item"><span class="tab-icon">🚗</span>Cars</div>
+            <div class="tab-fab">+</div>
+            <div class="tab-item"><span class="tab-icon">📊</span>Reports</div>
+            <div class="tab-item active"><span class="tab-icon">👤</span>Profile</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
